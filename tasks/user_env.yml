@@ -1,0 +1,21 @@
+---
+- name: Create the starship.toml
+  block:
+    - name: Ensure the ~/.config/ dir exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config"
+        state: directory
+        mode: 0750
+    - name: Ensure the ~/.config/starship.toml file exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/starship.toml"
+        state: touch
+        mode: 0600
+        modification_time: preserve
+        access_time: preserve
+
+    - name: Fill the starship.toml
+      ansible.builtin.blockinfile:
+        path: "{{ ansible_env.HOME }}/.config/starship.toml"
+        block: |
+          {{ starship_config }}

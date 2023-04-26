@@ -1,0 +1,21 @@
+---
+starship_config: |
+  [directory]
+  truncation_length = 3
+  truncate_to_repo = true
+  truncation_symbol = '…/'
+
+  [aws]
+  disabled = false
+
+  [terraform]
+  format = 'using 💠($style) '
+
+  [time]
+  disabled = false
+
+  [status]
+  disabled = false
+
+  [git_branch]  
+  symbol = '🌱 '

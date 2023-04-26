@@ -1,0 +1,7 @@
+---
+- name: Install starship
+  become: true
+  import_tasks: install_starship.yml
+
+- name: Set up zsh and starship
+  import_tasks: user_env.yml

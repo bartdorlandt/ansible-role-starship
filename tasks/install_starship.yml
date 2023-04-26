@@ -1,0 +1,20 @@
+---
+- name: Test starship executable
+  ansible.builtin.stat:
+    path: "/usr/local/bin/starship"
+  register: starship
+
+- name: Download and install starship
+  become: true
+  when: not starship.stat.exists
+  block:
+    - name: Download starship
+      command: curl -sS https://starship.rs/install.sh -o install.sh
+
+    - name: Install starship
+      command: sh install.sh -y
+
+    - name: Remove starship install file
+      ansible.builtin.file:
+        path: install.sh
+        state: absent
