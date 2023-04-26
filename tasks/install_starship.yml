@@ -30,6 +30,7 @@
 - name: Fill the .zshrc_local
   ansible.builtin.blockinfile:
     path: "{{ ansible_env.HOME }}/.zshrc_local"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - starship.rs"
     block: |
       # Starship.rs
       eval "$(starship init zsh)"
