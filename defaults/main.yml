@@ -19,5 +19,5 @@ starship_config: |
   [status]
   disabled = false
 
-  [git_branch]  
+  [git_branch]
   symbol = '🌱 '
