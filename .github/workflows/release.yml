@@ -1,0 +1,28 @@
+---
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  galaxy-publish:
+    name: Publish to Ansible Galaxy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ansible
+        run: pip install ansible
+
+      - name: Publish role to Ansible Galaxy
+        env:
+          GALAXY_TOKEN: ${{ secrets.ANSIBLE_GALAXY_TOKEN }}
+        run: >
+          ansible-galaxy role import
+          ${{ github.repository_owner }}
+          ${{ github.event.repository.name }}
+          --token "$GALAXY_TOKEN"
