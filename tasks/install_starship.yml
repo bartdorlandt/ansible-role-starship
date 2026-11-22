@@ -26,7 +26,7 @@
 
 - name: Ensure the .zshrc_local file exists
   ansible.builtin.file:
-    path: "{{ ansible_facts['user_dir'] }}/.zshrc_local"
+    path: "{{ ansible_facts.user_dir }}/.zshrc_local"
     state: touch
     mode: "0600"
     modification_time: preserve
@@ -34,7 +34,7 @@
 
 - name: Fill the .zshrc_local
   ansible.builtin.blockinfile:
-    path: "{{ ansible_facts['user_dir'] }}/.zshrc_local"
+    path: "{{ ansible_facts.user_dir }}/.zshrc_local"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - starship.rs"
     block: |
       # Starship.rs
